@@ -21,14 +21,22 @@ class Flappy_Bird(Env):
         self.action_space = Discrete(2)
         # Capture game frames
         self.cap = mss()
+        # You might need to change these numbers below
+#         self.game_location = {'top': 118, 'left': 468, 'width': 265, 'height': 388}
+#         self.done_location = {'top': 260, 'left': 464, 'width': 1, 'height': 1}
+#         self.x_click = 486
+#         self.y_click = 486
+        
         self.game_location = {'top': 200, 'left': 640, 'width': 420, 'height': 600}
         self.done_location = {'top': 360, 'left': 760, 'width': 1, 'height': 1}
-        
+        self.x_click = 750
+        self.y_click = 670
+
     def step(self, action):
         # Action
         if action == 0:
             # Jump
-            pydirectinput.click(x=750, y=670)
+            pydirectinput.click(x=self.x_click, y=self.y_click)
         else:
             # Do nothink
             time.sleep(0.18)
@@ -46,7 +54,7 @@ class Flappy_Bird(Env):
         time.sleep(2)
         for _ in range(3):
             time.sleep(0.08)
-            pydirectinput.click(x=750, y=670)
+            pydirectinput.click(x=self.x_click, y=self.y_click)
         return self.get_observation()
         
     def render(self):
